@@ -211,15 +211,15 @@ export default class Main extends Component {
                       defaultValue={overrideTxt}
                       onChange={e => this.handleOverrideTxtChange(e.target.value, i)}
                     />
-                    <Switch onChange={this.handleEditorSwitch} checkedChildren="JSON editor" unCheckedChildren="JSON editor" size="small" />
-                    {this.state.showJSONEditor && <div className="JSONEditor">
-                      <ReactJson
-                        name=""
-                        src={JSON.parse(overrideTxt)}
-                        onEdit={val => this.handleJSONEditorChange(val, i)}
-                        onAdd={val => this.handleJSONEditorChange(val, i)}
-                        onDelete={val => this.handleJSONEditorChange(val, i)}
-                      />
+                    // <Switch onChange={this.handleEditorSwitch} checkedChildren="JSON editor" unCheckedChildren="JSON editor" size="small" />
+                    // {this.state.showJSONEditor && <div className="JSONEditor">
+                    //   <ReactJson
+                    //     name=""
+                    //     src={JSON.parse(overrideTxt)}
+                    //     onEdit={val => this.handleJSONEditorChange(val, i)}
+                    //     onAdd={val => this.handleJSONEditorChange(val, i)}
+                    //     onDelete={val => this.handleJSONEditorChange(val, i)}
+                    //   />
                     </div>} */}
                     {this.state.interceptedRequests[match] && (
                       <>

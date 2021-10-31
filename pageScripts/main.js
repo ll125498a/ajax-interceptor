@@ -5,6 +5,7 @@ let ajax_interceptor_qoweifjqon = {
     ajaxInterceptor_switchOn: false,
     ajaxInterceptor_rules: [],
   },
+  log_messages: [],
   originalXHR: window.XMLHttpRequest,
   myXHR: function() {
     let pageScriptEventDispatched = false;
@@ -19,8 +20,20 @@ let ajax_interceptor_qoweifjqon = {
           }
         }
         if (matched) {
-          this.responseText = overrideTxt;
-          this.response = overrideTxt;
+
+            let content = JSON.parse(this.response);
+            let re = new RegExp(overrideTxt, 'i');
+            for(i = 0,len=content.LogEvents.length; i < len; i++){
+              if (content.LogEvents[i].Message.match(re)){
+                ajax_interceptor_qoweifjqon.log_messages.push(content.LogEvents[i]);
+              }
+            }
+            ajax_interceptor_qoweifjqon.log_messages = ajax_interceptor_qoweifjqon.log_messages.slice(-100);
+            content.LogEvents = ajax_interceptor_qoweifjqon.log_messages;
+            // this.responseText = overrideTxt;
+            // this.response = overrideTxt;
+            this.responseText = JSON.stringify(content);
+            this.response = JSON.stringify(content);
           
           if (!pageScriptEventDispatched) {
             window.dispatchEvent(new CustomEvent("pageScript", {
@@ -139,7 +152,6 @@ let ajax_interceptor_qoweifjqon = {
             proxy[key] = proxy[key].bind(newResponse);
           }
         }
-  
         return proxy;
       } else {
         return response;

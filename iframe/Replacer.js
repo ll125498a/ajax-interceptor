@@ -64,7 +64,7 @@ export default class Replacer extends Component {
     return (
       <>
         <div className="replace-with">
-          Replace With:
+        Regular Expression:
         </div>
         <textarea
           className="overrideTxt"
@@ -73,7 +73,7 @@ export default class Replacer extends Component {
           value={this.state.txt}
           onChange={e => this.handleOverrideTxtChange(e.target.value)}
         />
-        <Switch style={{marginTop: '6px'}} onChange={this.handleEditorSwitch} checkedChildren="JSON Editor" unCheckedChildren="JSON Editor" size="small" />
+        {/* <Switch style={{marginTop: '6px'}} onChange={this.handleEditorSwitch} checkedChildren="JSON Editor" unCheckedChildren="JSON Editor" size="small" />
         {this.state.showJSONEditor && (
           this.state.src ? 
           <div className="JSONEditor">
@@ -88,7 +88,7 @@ export default class Replacer extends Component {
               displayDataTypes={false}
             /> 
           </div> : <div className="JSONEditor Invalid">Invalid JSON</div>
-        )}
+        )} */}
       </>
     );
   }
